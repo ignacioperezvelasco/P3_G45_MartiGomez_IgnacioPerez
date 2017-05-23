@@ -9,7 +9,7 @@ Map::Map(std::string URL):
 
 	md = new char *[NUMROWS];
 	for (int i = 0; i < NUMROWS; i++) {
-		md[i] = new char[NUMCOLUMNS];
+		md[i] = new char[NUMCOLUMNS+1];
 	}
 	leerfichero(URL);
 
@@ -38,11 +38,11 @@ void Map::leerfichero(std::string URL)
 		while (std::getline(fichero, aux))
 		{
 
-			for (int i = 0; i < NUMROWS; i++)
+			for (int i = 0; i < NUMCOLUMNS; i++)
 			{
-				casilla = aux.back();
-				aux.pop_back();
-				md[j][i] = casilla;
+				/*casilla = aux.back();
+				aux.pop_back();*/
+				md[j][i] = aux[i];
 			}
 
 			j++;
@@ -57,11 +57,10 @@ void Map::printmapa()
 {
 	for (int i = 0; i < NUMROWS; i++)
 	{
-		std::cout << std::endl;
-
 		for (int j = 0; j < NUMCOLUMNS; j++)
 		{
-			std::cout << md[i][j];
+			std::cout << md[i][j] << " ";
 		}
+		std::cout << std::endl;
 	}
 }
