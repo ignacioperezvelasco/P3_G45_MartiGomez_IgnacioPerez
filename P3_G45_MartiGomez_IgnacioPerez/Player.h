@@ -2,6 +2,8 @@
 class Player
 {
 public:
+	int numacciones;
+
 	Player();
 	~Player();
 };

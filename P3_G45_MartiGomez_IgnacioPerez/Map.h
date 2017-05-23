@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <map>
 class Map
 {
 public:
@@ -14,16 +16,18 @@ public:
 		MAX			
 	};
 
-	int numRows;
-	int numColumns;
+	int NUMROWS;
+	int NUMCOLUMNS;
 	char **md;
 	//
 	Map(int dificultat);
 	void inicializarmapa();
 	void printmapa();
+	void leerfichero(std::string URL);
 	void cambiarpunto(int x, int y, char nuevoelemento);
 
 	Map();
+	Map::Map(std::string URL);
 	~Map();
 };
 
