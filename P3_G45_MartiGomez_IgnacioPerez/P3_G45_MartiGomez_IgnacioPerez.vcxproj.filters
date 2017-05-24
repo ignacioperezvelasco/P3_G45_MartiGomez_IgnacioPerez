@@ -38,6 +38,9 @@
     <ClInclude Include="entios.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Input.inl.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.cfg" />
