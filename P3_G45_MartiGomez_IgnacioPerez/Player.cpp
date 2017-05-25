@@ -60,30 +60,53 @@ void Player::update_player(enti::InputKey key)
 	case enti::InputKey::W:
 		if (currentio->x  > 0)
 		{
-			currentio->beforeEntio = currmap.md[currentio->x - 1][currentio->y];
-			currentio->x = currentio->x - 1;
-
+			if ((currmap.md[currentio->x - 1][currentio->y] == 'X') || (currmap.md[currentio->x - 1][currentio->y] == 'O'))
+			{
+				break;
+			}
+			else {
+				currentio->beforeEntio = currmap.md[currentio->x - 1][currentio->y];
+				currentio->x = currentio->x - 1;
+			}
 		}
 		break;
 	case enti::InputKey::A:
 		if (currentio->y > 0)
 		{
-			currentio->beforeEntio = currmap.md[currentio->x][currentio->y-1];
-			currentio->y = currentio->y - 1;
+			if ((currmap.md[currentio->x ][currentio->y-1] == 'X')|| (currmap.md[currentio->x ][currentio->y-1] == 'O'))
+			{
+				break;
+			}
+			else {
+				currentio->beforeEntio = currmap.md[currentio->x][currentio->y - 1];
+				currentio->y = currentio->y - 1;
+			}
 		}
 		break;
 	case enti::InputKey::S:
 		if (currentio->x < currmap.NUMROWS - 1)
 		{
-			currentio->beforeEntio = currmap.md[currentio->x + 1][currentio->y];
-			currentio->x = currentio->x + 1;
+			if ((currmap.md[currentio->x + 1][currentio->y] == 'X') || (currmap.md[currentio->x + 1][currentio->y] == 'O'))
+			{
+				break;
+			}
+			else {
+				currentio->beforeEntio = currmap.md[currentio->x + 1][currentio->y];
+				currentio->x = currentio->x + 1;
+			}
 		}
 		break;
 	case enti::InputKey::D:
 		if (currentio->y < currmap.NUMCOLUMNS - 1)
 		{
-			currentio->beforeEntio = currmap.md[currentio->x][currentio->y + 1];
-			currentio->y = currentio->y + 1;
+			if ((currmap.md[currentio->x ][currentio->y+1] == 'X') || (currmap.md[currentio->x ][currentio->y+1] == 'O'))
+			{
+				break;
+			}
+			else {
+				currentio->beforeEntio = currmap.md[currentio->x][currentio->y + 1];
+				currentio->y = currentio->y + 1;
+			}
 		}
 		break;
 	}

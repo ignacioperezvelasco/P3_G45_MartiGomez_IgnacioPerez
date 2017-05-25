@@ -59,7 +59,7 @@ int Entio::findx(char i)
 		for (int j = 0; j <= currMap.NUMCOLUMNS; j++)
 		{
 			aux = currMap.md[c][j];
-			x = j;
+			x = c;
 			if (aux == i) 
 			{
 				return x;
@@ -77,7 +77,7 @@ int Entio::findy(char i)
 		for (int j = 0; j <= currMap.NUMCOLUMNS; j++)
 		{
 			aux = currMap.md[c][j];
-			y = c;
+			y = j;
 			if (aux == i)
 			{
 				return y;
