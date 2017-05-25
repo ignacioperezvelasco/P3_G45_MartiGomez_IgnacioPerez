@@ -1,6 +1,6 @@
 #pragma once
-#include "Input.inl.hh"
 #include "Map.h"
+
 #include <string>
 class Entio
 {

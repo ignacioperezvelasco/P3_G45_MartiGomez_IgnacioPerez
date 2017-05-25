@@ -19,6 +19,7 @@ public:
 	int NUMROWS;
 	int NUMCOLUMNS;
 	char **md;
+
 	//
 	void printmapa();
 	void leerfichero(std::string URL);

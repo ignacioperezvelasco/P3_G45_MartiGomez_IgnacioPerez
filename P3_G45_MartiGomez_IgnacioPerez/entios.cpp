@@ -8,7 +8,8 @@ Entio::Entio(char i,Map mapa):
 	life{ 10 },
 	fatiga{ 0 },
 	currMap{ mapa },
-	numflechas{ 10 }
+	numflechas{ 10 },
+	beforeEntio{'.'}
 {
 	setEntioID(i);
 	x = findx(i);

@@ -3,7 +3,7 @@
 Map::Map() {};
 
 Map::Map(std::string URL):
-	NUMCOLUMNS(74),
+	NUMCOLUMNS(73),
 	NUMROWS(36)
 {
 
@@ -12,10 +12,6 @@ Map::Map(std::string URL):
 		md[i] = new char[NUMCOLUMNS+1];
 	}
 	leerfichero(URL);
-
-	//INICIALIZAMOS ATRIBUTOS
-	
-
 }
 
 Map::~Map()
@@ -25,7 +21,7 @@ void Map::leerfichero(std::string URL)
 {	
 	std::ifstream fichero;
 	std::string aux;
-	char casilla;
+	//char casilla;
 	int j = 0;
 	
 	fichero.open(URL);
@@ -40,8 +36,6 @@ void Map::leerfichero(std::string URL)
 
 			for (int i = 0; i < NUMCOLUMNS; i++)
 			{
-				/*casilla = aux.back();
-				aux.pop_back();*/
 				md[j][i] = aux[i];
 			}
 
@@ -63,4 +57,9 @@ void Map::printmapa()
 		}
 		std::cout << std::endl;
 	}
+}
+
+void Map::cambiarpunto(int x, int y, char a) 
+{
+	md[x][y] = a;
 }

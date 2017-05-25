@@ -2,6 +2,8 @@
 #include "entios.h"
 #include "Map.h"
 #include <map>
+#include "Input.inl.hh"
+
 class Player
 {
 public:
@@ -14,7 +16,7 @@ public:
 	void gastaraccion();
 	void empezarTurno();
 
-
+	void update_player(enti::InputKey key);			//MOVIMIENTO JUGADOR
 	Player(Map mapa,char a, char b, char c, char d, char e,char f);
 	Player();
 
