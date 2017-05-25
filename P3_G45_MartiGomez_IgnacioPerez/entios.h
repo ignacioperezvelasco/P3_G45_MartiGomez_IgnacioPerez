@@ -1,6 +1,7 @@
 #pragma once
 #include "Input.inl.hh"
 #include "Map.h"
+#include <string>
 class Entio
 {
 public:
@@ -27,7 +28,7 @@ public:
 
 	void mover(char a);
 
-	void atacar(char a);
+	void atacar();
 
 	Entio(char i, Map mapa);
 	Entio();

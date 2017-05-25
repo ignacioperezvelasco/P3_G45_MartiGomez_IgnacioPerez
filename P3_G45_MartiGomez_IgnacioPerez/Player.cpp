@@ -1,17 +1,18 @@
 #include "Player.h"
 
+
 Player::Player(Map mapa, char a, char b, char c, char d, char e, char f):
 	numacciones{ 10 },
 	currmap{ mapa },
-	currentio{&myEntios[0]}
+	currentio{&myEntios[a]}
 
 {
-	myEntios[0] = Entio(a, currmap);
-	myEntios[1] = Entio(b, currmap);
-	myEntios[2] = Entio(c, currmap);
-	myEntios[3] = Entio(d, currmap);
-	myEntios[4] = Entio(e, currmap);
-	myEntios[5] = Entio(f, currmap);
+	myEntios[a]=Entio(a,currmap);
+	myEntios[b] = Entio(b, currmap);
+	myEntios[c] = Entio(c, currmap);
+	myEntios[d] = Entio(d, currmap);
+	myEntios[e] = Entio(e, currmap);
+	myEntios[f] = Entio(f, currmap);
 }
 
 Player::Player()
@@ -27,7 +28,21 @@ void Player::gastaraccion()
 	numacciones--;
 }
 
-void Player::cambiarentio(int i)
+void Player::empezarTurno()
 {
-	currentio = &myEntios[i];
+	int aux = currentio->fatiga;
+	Entio* aux2=currentio;
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (aux > myEntios[i].fatiga) {
+			aux = myEntios[i].fatiga;
+			aux2 = &myEntios[i];
+		}
+	}
+	if (currentio != aux2) 
+	{
+		currentio = aux2;
+		gastaraccion();
+	}
 }

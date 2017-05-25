@@ -1,6 +1,7 @@
 #include "entios.h"
 
 
+
 Entio::Entio() {}
 
 Entio::Entio(char i,Map mapa):
@@ -13,7 +14,6 @@ Entio::Entio(char i,Map mapa):
 	x = findx(i);
 	y = findy(i);
 }
-
 
 Entio::~Entio()
 {
@@ -84,4 +84,35 @@ int Entio::findy(char i)
 		}
 	
 	}
+}
+
+void Entio::mover(char a)
+{
+
+}
+
+void Entio::atacar()
+{
+	int arma;
+	std::cout << std::endl;
+	std::cout << "Que arma quieres usar?  1: Espada  2: Arco" << std::endl;
+	std::cin >> arma ;
+	if (arma == 1)
+	{
+		std::cout << "has escojido: Espada" << std::endl;
+		/*switch (Input) {
+		case W:
+			cur;
+			break; //optional
+		case constant - expression:
+			statement(s);
+			break; //optional
+		}*/
+		
+	}
+	if (arma == 2)
+	{
+		std::cout << "has escojido: Arco" << std::endl;
+	}
+
 }

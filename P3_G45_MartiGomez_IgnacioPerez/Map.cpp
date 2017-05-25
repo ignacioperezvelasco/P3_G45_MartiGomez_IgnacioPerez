@@ -59,7 +59,7 @@ void Map::printmapa()
 	{
 		for (int j = 0; j < NUMCOLUMNS; j++)
 		{
-			std::cout << md[i][j] << " ";
+			std::cout << md[i][j];
 		}
 		std::cout << std::endl;
 	}
