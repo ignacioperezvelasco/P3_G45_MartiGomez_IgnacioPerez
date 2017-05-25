@@ -1,9 +1,9 @@
 #include "entios.h"
 
 
-entios::entios() {}
+Entio::Entio() {}
 
-entios::entios(char i,Map mapa):
+Entio::Entio(char i,Map mapa):
 	life{ 10 },
 	fatiga{ 0 },
 	currMap{ mapa },
@@ -15,41 +15,41 @@ entios::entios(char i,Map mapa):
 }
 
 
-entios::~entios()
+Entio::~Entio()
 {
 }
 
-int entios::getlife()
+int Entio::getlife()
 {
 	return life;
 }
 
-int entios::getFatiga()
+int Entio::getFatiga()
 {
 	return fatiga;
 }
 
-void entios::mfatiga()
+void Entio::mfatiga()
 {
 	fatiga += 1;
 }
 
-int entios::getX()
+int Entio::getX()
 {
 	return x;
 }
 
-int entios::getY()
+int Entio::getY()
 {
 	return y;
 }
 
-void entios::setEntioID(char i)
+void Entio::setEntioID(char i)
 {
 	entioID = i;
 }
 
-int entios::findx(char i)
+int Entio::findx(char i)
 {
 	char aux;
 	int x;
@@ -67,7 +67,7 @@ int entios::findx(char i)
 	}
 }
 
-int entios::findy(char i)
+int Entio::findy(char i)
 {
 	char aux;
 	int y;

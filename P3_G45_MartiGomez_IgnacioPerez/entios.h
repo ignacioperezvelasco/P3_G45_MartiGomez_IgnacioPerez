@@ -1,7 +1,7 @@
 #pragma once
 #include "Input.inl.hh"
 #include "Map.h"
-class entios
+class Entio
 {
 public:
 	//atributos
@@ -29,8 +29,8 @@ public:
 
 	void atacar(char a);
 
-	entios::entios(char i, Map mapa);
-	entios();
-	~entios();
+	Entio(char i, Map mapa);
+	Entio();
+	~Entio();
 };
 

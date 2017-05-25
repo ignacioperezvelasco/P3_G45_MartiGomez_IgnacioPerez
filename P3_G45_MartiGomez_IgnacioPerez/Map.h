@@ -20,8 +20,6 @@ public:
 	int NUMCOLUMNS;
 	char **md;
 	//
-	Map(int dificultat);
-	void inicializarmapa();
 	void printmapa();
 	void leerfichero(std::string URL);
 	void cambiarpunto(int x, int y, char nuevoelemento);
