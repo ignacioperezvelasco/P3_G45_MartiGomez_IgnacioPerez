@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Input.inl.hh"
+#include <vector>
 
 
 Player::Player(Map mapa, char a, char b, char c, char d, char e, char f):
@@ -67,6 +68,8 @@ void Player::update_player(enti::InputKey key)
 			else {
 				currentio->beforeEntio = currmap.md[currentio->x - 1][currentio->y];
 				currentio->x = currentio->x - 1;
+				currentio->mfatiga();
+				numacciones--;
 			}
 		}
 		break;
@@ -80,6 +83,8 @@ void Player::update_player(enti::InputKey key)
 			else {
 				currentio->beforeEntio = currmap.md[currentio->x][currentio->y - 1];
 				currentio->y = currentio->y - 1;
+				currentio->mfatiga();
+				numacciones--;
 			}
 		}
 		break;
@@ -93,6 +98,8 @@ void Player::update_player(enti::InputKey key)
 			else {
 				currentio->beforeEntio = currmap.md[currentio->x + 1][currentio->y];
 				currentio->x = currentio->x + 1;
+				currentio->mfatiga();
+				numacciones--;
 			}
 		}
 		break;
@@ -106,13 +113,49 @@ void Player::update_player(enti::InputKey key)
 			else {
 				currentio->beforeEntio = currmap.md[currentio->x][currentio->y + 1];
 				currentio->y = currentio->y + 1;
+				currentio->mfatiga();
+				numacciones--;
 			}
 		}
 		break;
+	case enti::InputKey::SPACEBAR:
+		currentio->atacar();
+		break;
+	case enti::InputKey::ENTER:
+		cambiarEntio();
+		break;
 	}
-	
 
-	//UPDATEAMOS LA POSICION DEL JUGADOR
-	currmap.cambiarpunto(previous_x, previous_y, next);
-	currmap.cambiarpunto( currentio->x, currentio->y, currentio->entioID);
+		//UPDATEAMOS LA POSICION DEL JUGADOR
+		currmap.cambiarpunto(previous_x, previous_y, next);
+		currmap.cambiarpunto(currentio->x, currentio->y, currentio->entioID);
 }
+
+
+void Player::cambiarEntio()
+{
+	for (auto it = myEntios.begin(); it != myEntios.end(); it++)
+	{
+		
+	}
+}
+
+void Player::deshacerEntio()
+{
+}
+
+void Player::rehacerEntio()
+{
+}
+
+
+int Player::getNumaccions()
+{
+	return numacciones;
+}
+
+void Player::setNumaccions(int num)
+{
+	numacciones = num;
+}
+
