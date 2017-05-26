@@ -16,9 +16,17 @@ public:
 	void gastaraccion();
 	void empezarTurno();
 
-	void update_player(enti::InputKey key);			//MOVIMIENTO JUGADOR
+	void update_player(enti::InputKey key);									//MOVIMIENTO JUGADOR
+	void cambiarEntio();
+	void deshacerEntio();
+	void rehacerEntio();
+
+	int getNumaccions();
+	void setNumaccions(int num);
 	Player(Map mapa,char a, char b, char c, char d, char e,char f);
 	Player();
+
+
 
 	~Player();
 };
