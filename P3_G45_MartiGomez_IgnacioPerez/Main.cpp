@@ -15,11 +15,24 @@ void main()
 
 	//VARIABLE DE MOVIMIENTO
 	enti::InputKey k;
+
+	//PRINTAMOS MAPA
 	a.printmapa();
+
+	//EMPIEZA EL JUGADOR 1
+	player2.numacciones = 0;
 	do
 	{
 		k = enti::getInputKey();
-		player1.update_player(k);
+		if (player1.numacciones == 0)
+		{
+			player2.update_player(k);
+		}
+		else if (player2.numacciones == 0)
+		{
+			player1.update_player(k);
+		}
+
 		if (k != enti::InputKey::NONE) {
 			system("cls");
 			a.printmapa();

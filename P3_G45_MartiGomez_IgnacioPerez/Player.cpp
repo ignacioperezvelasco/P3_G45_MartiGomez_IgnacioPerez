@@ -67,6 +67,8 @@ void Player::update_player(enti::InputKey key)
 			else {
 				currentio->beforeEntio = currmap.md[currentio->x - 1][currentio->y];
 				currentio->x = currentio->x - 1;
+				currentio->mfatiga();
+				gastaraccion();
 			}
 		}
 		break;
@@ -80,6 +82,8 @@ void Player::update_player(enti::InputKey key)
 			else {
 				currentio->beforeEntio = currmap.md[currentio->x][currentio->y - 1];
 				currentio->y = currentio->y - 1;
+				currentio->mfatiga();
+				gastaraccion();
 			}
 		}
 		break;
@@ -93,6 +97,8 @@ void Player::update_player(enti::InputKey key)
 			else {
 				currentio->beforeEntio = currmap.md[currentio->x + 1][currentio->y];
 				currentio->x = currentio->x + 1;
+				currentio->mfatiga();
+				gastaraccion();
 			}
 		}
 		break;
@@ -106,6 +112,8 @@ void Player::update_player(enti::InputKey key)
 			else {
 				currentio->beforeEntio = currmap.md[currentio->x][currentio->y + 1];
 				currentio->y = currentio->y + 1;
+				currentio->mfatiga();
+				gastaraccion();
 			}
 		}
 		break;

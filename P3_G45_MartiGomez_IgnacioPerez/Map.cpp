@@ -53,10 +53,11 @@ void Map::printmapa()
 	{
 		for (int j = 0; j < NUMCOLUMNS; j++)
 		{
-			std::cout << md[i][j];
+			enti::cout << md[i][j] << " ";
 		}
-		std::cout << std::endl;
+		enti::cout << enti::endl;
 	}
+	enti::cout << enti::cend;
 }
 
 void Map::cambiarpunto(int x, int y, char a) 
