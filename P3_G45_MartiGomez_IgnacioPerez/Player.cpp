@@ -266,4 +266,6 @@ void Player::ataque(Player &player, enti::InputKey k)
 	{
 
 	}
+
+	//restarle al aux->life deletear en caso de que sea aux-<life<0;
 }
