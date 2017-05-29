@@ -7,17 +7,29 @@
 class Player
 {
 public:
+	//ATRIBUTOS
 	Map currmap;
 	int numacciones;
 	std::map<char,Entio> myEntios;
+
+	//GUARDAMOS ULTIMOS MOVIMIENTOS
+	int l_X;
+	int l_Y;
 	
 	Entio* currentio;
+	Entio* entios[6];
 
 	void gastaraccion();
-	void empezarTurno();
+	void entioMenosFatigado();
+	void deshacerAccion();
+	void rehacerAccion();
+	//void finalizarTurno();
 
 	void update_player(enti::InputKey key);			//MOVIMIENTO JUGADOR
-	Player(Map mapa,char a, char b, char c, char d, char e,char f);
+	void lastMove();								//DESHACER NOVIMIENTO
+	void newMove();									//REHACER MOVIMIENTO
+
+	Player(Map &mapa,char a, char b, char c, char d, char e,char f);
 	Player();
 
 	~Player();

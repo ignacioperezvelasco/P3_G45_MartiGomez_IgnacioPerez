@@ -30,7 +30,7 @@ public:
 
 	void atacar();
 
-	Entio(char i, Map mapa);
+	Entio(char i, Map &mapa);
 	Entio();
 	~Entio();
 };

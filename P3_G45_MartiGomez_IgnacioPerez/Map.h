@@ -22,7 +22,6 @@ public:
 	int NUMCOLUMNS;
 	char **md;
 
-	//
 	void printmapa();
 	void leerfichero(std::string URL);
 	void cambiarpunto(int x, int y, char nuevoelemento);

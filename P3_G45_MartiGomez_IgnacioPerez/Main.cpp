@@ -24,14 +24,8 @@ void main()
 	do
 	{
 		k = enti::getInputKey();
-		if (player1.numacciones == 0)
-		{
-			player2.update_player(k);
-		}
-		else if (player2.numacciones == 0)
-		{
-			player1.update_player(k);
-		}
+
+		player1.update_player(k);
 
 		if (k != enti::InputKey::NONE) {
 			system("cls");

@@ -53,7 +53,30 @@ void Map::printmapa()
 	{
 		for (int j = 0; j < NUMCOLUMNS; j++)
 		{
-			enti::cout << md[i][j] << " ";
+			if (md[i][j] == 'O')
+			{
+				enti::cout << enti::Color::LIGHTCYAN << md[i][j] << " ";
+			}
+			else if (md[i][j] == 'X')
+			{
+				enti::cout << enti::Color::LIGHTRED << md[i][j] << " ";
+			}
+			else if (md[i][j] == ':')
+			{
+				enti::cout << enti::Color::LIGHTGREEN << md[i][j] << " ";
+			}
+			else if (md[i][j] == '.')
+			{
+				enti::cout << enti::Color::WHITE << md[i][j] << " ";
+			}
+			else if (md[i][j] == 'A' || md[i][j] == 'B' || md[i][j] == 'C' || md[i][j] == 'D' || md[i][j] == 'E' || md[i][j] == 'F')
+			{
+				enti::cout << md[i][j] << " ";
+			}
+			else if (md[i][j] == '1' || md[i][j] == '2' || md[i][j] == '3' || md[i][j] == '4' || md[i][j] == '5' || md[i][j] == '6')
+			{
+				enti::cout << md[i][j] << " ";
+			}
 		}
 		enti::cout << enti::endl;
 	}

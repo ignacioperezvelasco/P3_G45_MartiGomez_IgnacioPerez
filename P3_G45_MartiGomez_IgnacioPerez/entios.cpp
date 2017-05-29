@@ -4,7 +4,7 @@
 
 Entio::Entio() {}
 
-Entio::Entio(char i,Map mapa):
+Entio::Entio(char i,Map &mapa):
 	life{ 10 },
 	fatiga{ 0 },
 	currMap{ mapa },
