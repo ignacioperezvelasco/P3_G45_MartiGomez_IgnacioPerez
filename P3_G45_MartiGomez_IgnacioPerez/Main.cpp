@@ -20,12 +20,29 @@ void main()
 	a.printmapa();
 
 	//EMPIEZA EL JUGADOR 1
-	player2.numacciones = 0;
+	
+	bool pl1 = true;
 	do
 	{
 		k = enti::getInputKey();
-
-		player1.update_player(k);
+		//player1 starts
+		if (pl1) {
+			player1.update_player(k);
+			if (player1.numacciones <= 0) 
+			{
+				pl1 = false;
+				player1.numacciones = 10;
+			}
+		}
+		else 
+		{
+			player2.update_player(k);
+			if (player2.numacciones <= 0)
+			{
+				pl1 = true;
+				player2.numacciones = 10;
+			}
+		}
 
 		if (k != enti::InputKey::NONE) {
 			system("cls");
