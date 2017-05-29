@@ -17,6 +17,7 @@ Map::Map(std::string URL):
 Map::~Map()
 {
 }
+
 void Map::leerfichero(std::string URL)
 {	
 	std::ifstream fichero;

@@ -94,7 +94,7 @@ void Player::update_player(enti::InputKey key)
 	case enti::InputKey::W:
 		if (currentio->x  > 0)
 		{
-			if ((currmap.md[currentio->x - 1][currentio->y] == 'X') || (currmap.md[currentio->x - 1][currentio->y] == 'O'))
+			if ((currmap.md[currentio->x - 1][currentio->y] == 'X') || (currmap.md[currentio->x - 1][currentio->y] == 'O')|| (currmap.md[currentio->x - 1][currentio->y] == 'F') || (currmap.md[currentio->x - 1][currentio->y] == 'E') || (currmap.md[currentio->x - 1][currentio->y] == 'D')|| (currmap.md[currentio->x - 1][currentio->y] == 'C') || (currmap.md[currentio->x - 1][currentio->y] == 'B') || (currmap.md[currentio->x - 1][currentio->y] == 'A') || (currmap.md[currentio->x - 1][currentio->y] == '1') || (currmap.md[currentio->x - 1][currentio->y] == '2') || (currmap.md[currentio->x - 1][currentio->y] == '3') || (currmap.md[currentio->x - 1][currentio->y] == '4') || (currmap.md[currentio->x - 1][currentio->y] == '5') || (currmap.md[currentio->x - 1][currentio->y] == '6'))
 			{
 				break;
 			}
@@ -114,7 +114,7 @@ void Player::update_player(enti::InputKey key)
 	case enti::InputKey::A:
 		if (currentio->y > 0)
 		{
-			if ((currmap.md[currentio->x ][currentio->y-1] == 'X')|| (currmap.md[currentio->x ][currentio->y-1] == 'O'))
+			if ((currmap.md[currentio->x ][currentio->y-1] == 'X')|| (currmap.md[currentio->x ][currentio->y-1] == 'O')|| (currmap.md[currentio->x][currentio->y - 1] == 'F') || (currmap.md[currentio->x][currentio->y - 1] == 'E') || (currmap.md[currentio->x][currentio->y - 1] == 'D') || (currmap.md[currentio->x][currentio->y - 1] == 'C') || (currmap.md[currentio->x][currentio->y - 1] == 'B') || (currmap.md[currentio->x][currentio->y - 1] == 'A') || (currmap.md[currentio->x][currentio->y - 1] == '1') || (currmap.md[currentio->x][currentio->y - 1] == '2') || (currmap.md[currentio->x][currentio->y - 1] == '3') || (currmap.md[currentio->x][currentio->y - 1] == '4') || (currmap.md[currentio->x][currentio->y - 1] == '5') || (currmap.md[currentio->x][currentio->y - 1] == '6'))
 			{
 				break;
 			}
@@ -135,7 +135,7 @@ void Player::update_player(enti::InputKey key)
 	case enti::InputKey::S:
 		if (currentio->x < currmap.NUMROWS - 1)
 		{
-			if ((currmap.md[currentio->x + 1][currentio->y] == 'X') || (currmap.md[currentio->x + 1][currentio->y] == 'O'))
+			if ((currmap.md[currentio->x + 1][currentio->y] == 'X') || (currmap.md[currentio->x + 1][currentio->y] == 'O') || (currmap.md[currentio->x + 1][currentio->y] == 'F') || (currmap.md[currentio->x + 1][currentio->y] == 'E') || (currmap.md[currentio->x + 1][currentio->y] == 'D') || (currmap.md[currentio->x + 1][currentio->y] == 'C') || (currmap.md[currentio->x + 1][currentio->y] == 'B') || (currmap.md[currentio->x + 1][currentio->y] == 'A') || (currmap.md[currentio->x + 1][currentio->y] == '1') || (currmap.md[currentio->x + 1][currentio->y] == '2') || (currmap.md[currentio->x + 1][currentio->y] == '3') || (currmap.md[currentio->x + 1][currentio->y] == '4') || (currmap.md[currentio->x + 1][currentio->y] == '5') || (currmap.md[currentio->x + 1][currentio->y] == '6'))
 			{
 				break;
 			}
@@ -156,7 +156,7 @@ void Player::update_player(enti::InputKey key)
 	case enti::InputKey::D:
 		if (currentio->y < currmap.NUMCOLUMNS - 1)
 		{
-			if ((currmap.md[currentio->x ][currentio->y+1] == 'X') || (currmap.md[currentio->x ][currentio->y+1] == 'O'))
+			if ((currmap.md[currentio->x ][currentio->y+1] == 'X') || (currmap.md[currentio->x ][currentio->y+1] == 'O') || (currmap.md[currentio->x][currentio->y + 1] == 'O') || (currmap.md[currentio->x][currentio->y + 1] == 'F') || (currmap.md[currentio->x][currentio->y + 1] == 'E') || (currmap.md[currentio->x][currentio->y + 1] == 'D') || (currmap.md[currentio->x][currentio->y + 1] == 'C') || (currmap.md[currentio->x][currentio->y + 1] == 'B') || (currmap.md[currentio->x][currentio->y + 1] == 'A') || (currmap.md[currentio->x][currentio->y + 1] == '1') || (currmap.md[currentio->x][currentio->y + 1] == '2') || (currmap.md[currentio->x][currentio->y + 1] == '3') || (currmap.md[currentio->x][currentio->y + 1] == '4') || (currmap.md[currentio->x][currentio->y + 1] == '5') || (currmap.md[currentio->x][currentio->y + 1] == '6'))
 			{
 				break;
 			}
@@ -201,4 +201,69 @@ void Player::lastMove()
 
 void Player::newMove()
 {
+}
+
+void Player::ataque(Player &player, enti::InputKey k)
+{
+	Entio* aux;
+	//hacer cout cin para saber espada/arco
+
+	//pedir otro input para saber direccion
+	
+	//arco
+	//derecha
+	if (k==enti::InputKey::NUM1)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+			{
+				int proximidad = player.entios[i]->x - currentio->x;
+				int proximidadAux = aux->x - currentio->x;
+				if (aux == nullptr || (proximidad < proximidadAux))
+				{
+
+					aux = player.entios[i];
+				}
+			}
+		}
+	}
+	//izquierda
+	else if (k == enti::InputKey::NUM2)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x < currentio->x))
+			{
+				int proximidad = currentio->x-player.entios[i]->x ;
+				int proximidadAux = -currentio->x-aux->x;
+				if (aux == nullptr || (proximidad < proximidadAux))
+				{
+					aux = player.entios[i];
+				}
+			}
+		}
+	}
+	//arriba
+	else if(k == enti::InputKey::NUM3)
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+			{
+				int proximidad = player.entios[i]->x - currentio->x;
+				int proximidadAux = aux->x - currentio->x;
+				if (aux == nullptr || (proximidad < proximidadAux))
+				{
+
+					aux = player.entios[i];
+				}
+			}
+		}
+	}
+	//abajo
+	else if(k == enti::InputKey::NUM4)
+	{
+
+	}
 }

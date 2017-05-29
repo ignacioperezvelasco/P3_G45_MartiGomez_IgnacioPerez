@@ -28,9 +28,12 @@ public:
 	void update_player(enti::InputKey key);			//MOVIMIENTO JUGADOR
 	void lastMove();								//DESHACER NOVIMIENTO
 	void newMove();									//REHACER MOVIMIENTO
+	void ataque(Player &player, enti::InputKey k);
 
 	Player(Map &mapa,char a, char b, char c, char d, char e,char f);
 	Player();
+
+	
 
 	~Player();
 };

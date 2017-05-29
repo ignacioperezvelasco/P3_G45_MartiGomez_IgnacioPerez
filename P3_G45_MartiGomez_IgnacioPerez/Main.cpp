@@ -4,6 +4,7 @@
 #include "entios.h"
 #include "Player.h"
 
+
 void main() 
 {
 	//INICIAR MAPA
