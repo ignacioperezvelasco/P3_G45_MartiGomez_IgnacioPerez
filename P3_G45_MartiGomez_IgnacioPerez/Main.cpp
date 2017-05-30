@@ -17,27 +17,32 @@ void main()
 	//VARIABLE DE MOVIMIENTO
 	enti::InputKey k;
 
-	//PRINTAMOS MAPA
+	//PRINTAMOS MAPA Y AYUDA
+	a.help();
+	
+	system("cls");
 	a.printmapa();
 
 	//EMPIEZA EL JUGADOR 1
 	
 	bool pl1 = true;
+	player1.info();
 	do
 	{
 		k = enti::getInputKey();
 		//player1 starts
 		if (pl1) {
-			player1.update_player(k);
+			player1.update_player(k,player2);
 			if (player1.numacciones <= 0) 
 			{
 				pl1 = false;
 				player1.numacciones = 10;
+				
 			}
 		}
 		else 
 		{
-			player2.update_player(k);
+			player2.update_player(k,player1);
 			if (player2.numacciones <= 0)
 			{
 				pl1 = true;
@@ -48,6 +53,15 @@ void main()
 		if (k != enti::InputKey::NONE) {
 			system("cls");
 			a.printmapa();
+
+			if (pl1 == false)
+			{
+				player2.info();
+			}
+			else
+			{
+				player1.info();
+			}
 		}
 	} while (true);
 

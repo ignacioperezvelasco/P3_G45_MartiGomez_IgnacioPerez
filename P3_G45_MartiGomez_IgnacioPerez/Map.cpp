@@ -84,6 +84,29 @@ void Map::printmapa()
 	enti::cout << enti::cend;
 }
 
+void Map::help()
+{
+	enti::cout << enti::Color::LIGHTGREEN << "CLASH OF ENTIOS" << enti::endl;
+	enti::cout << enti::endl;
+
+	enti::cout << enti::Color::WHITE << "- Each player has 6 entios." << enti::endl;
+	enti::cout << enti::Color::WHITE << "- Use WASD to move each entio."  << enti::endl;
+	enti::cout << enti::Color::WHITE << "- Use Z to undo a movement."  << enti::endl;
+	enti::cout << enti::Color::WHITE << "- Each entio has 2 weapons: 1 sword and 1 bow."  << enti::endl;
+	enti::cout << enti::Color::WHITE << "- Press the SPACEBAR to use a weapon."  << enti::endl;
+	enti::cout << enti::Color::WHITE << "- The sword can instantly kill an enemy if it is place in a cell next door."<< enti::endl;
+	enti::cout << enti::Color::WHITE << "- The bow can damage an enemy within a maxium distance of a 10 cells." << enti::endl;
+	enti::cout << enti::Color::WHITE << "- Each character has oly 10 arrows."<< enti::endl;
+	enti::cout << enti::Color::WHITE << "- Each turn the less fatigued entio will play first."<< enti::endl;
+	enti::cout << enti::Color::WHITE << "- To play with the next entio press ENTER." << enti::endl;
+	enti::cout << enti::Color::WHITE << "- Each player can do 10 of these actions" << enti::endl;
+	enti::cout << enti::endl;
+
+	enti::cout << enti::Color::BLUE << "Press any key to begin the game!" << enti::endl;
+}
+
+
+
 void Map::cambiarpunto(int x, int y, char a) 
 {
 	md[x][y] = a;

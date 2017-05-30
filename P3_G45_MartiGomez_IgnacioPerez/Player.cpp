@@ -82,7 +82,17 @@ void Player::rehacerAccion()
 {
 }
 
-void Player::update_player(enti::InputKey key)
+void Player::info()
+{
+	enti::cout << enti::Color::LIGHTGREEN << "Remaining movements: ";
+	enti::cout << enti::Color::WHITE << numacciones << enti::endl;
+
+	enti::cout << enti::Color::LIGHTGREEN << "Now moves character ";
+	enti::cout << enti::Color::WHITE << currentio->entioID << enti::endl;
+	enti::cout << enti::cend;
+}
+
+void Player::update_player(enti::InputKey key, Player &player)
 {
 	int previous_x = currentio->x;
 	int previous_y = currentio->y;
@@ -180,6 +190,7 @@ void Player::update_player(enti::InputKey key)
 		deshacerAccion();
 		break;
 	case enti::InputKey::SPACEBAR:
+		ataque(player);
 
 		break;
 	case enti::InputKey::ENTER:
@@ -203,69 +214,177 @@ void Player::newMove()
 {
 }
 
-void Player::ataque(Player &player, enti::InputKey k)
+void Player::ataque(Player &player)
 {
+	enti::InputKey k;
+	enti::InputKey arma;
 	Entio* aux;
+	aux = nullptr;
 	//hacer cout cin para saber espada/arco
 
+	do {
+		enti::cout << enti::Color::WHITE << "Enter the weapon you want to choose:  " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "1 - SWORD " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "2 - BOW" << enti::endl;
+		arma=enti::getInputKey();
+		enti::cout << enti::cend;
+	} while (arma !=enti::InputKey::NUM1 || arma != enti::InputKey::NUM2);
+
 	//pedir otro input para saber direccion
+	do {
+	enti::cout << enti::Color::WHITE << "Enter the direction to attack:  " << enti::endl;
+	enti::cout << enti::Color::LIGHTGREEN << "1 - UP " << enti::endl;
+	enti::cout << enti::Color::LIGHTGREEN << "2 - LEFT" << enti::endl;
+	enti::cout << enti::Color::LIGHTGREEN << "3 - DOWN " << enti::endl;
+	enti::cout << enti::Color::LIGHTGREEN << "4 - RIGHT" << enti::endl;
+	k = enti::getInputKey();
+	} while (k != enti::InputKey::NUM1 || k != enti::InputKey::NUM2 || k != enti::InputKey::NUM3 || k != enti::InputKey::NUM4);
 	
+
 	//arco
-	//derecha
-	if (k==enti::InputKey::NUM1)
+	if (arma == enti::InputKey::NUM2)
 	{
-		for (int i = 0; i < 6; i++)
+		//derecha
+		if (k == enti::InputKey::NUM1)
 		{
-			if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+			for (int i = 0; i < 6; i++)
 			{
-				int proximidad = player.entios[i]->x - currentio->x;
-				int proximidadAux = aux->x - currentio->x;
-				if (aux == nullptr || (proximidad < proximidadAux))
+				if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
 				{
+					int proximidad = player.entios[i]->x - currentio->x;
+					int proximidadAux = aux->x - currentio->x;
+					if (aux == nullptr || (proximidad < proximidadAux))
+					{
 
-					aux = player.entios[i];
+						aux = player.entios[i];
+					}
+				}
+			}
+		}
+		//izquierda
+		else if (k == enti::InputKey::NUM2)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x < currentio->x))
+				{
+					int proximidad = currentio->x - player.entios[i]->x;
+					int proximidadAux = -currentio->x - aux->x;
+					if (aux == nullptr || (proximidad < proximidadAux))
+					{
+						aux = player.entios[i];
+					}
+				}
+			}
+		}
+		//arriba
+		else if (k == enti::InputKey::NUM3)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+				{
+					int proximidad = player.entios[i]->x - currentio->x;
+					int proximidadAux = aux->x - currentio->x;
+					if (aux == nullptr || (proximidad < proximidadAux))
+					{
+
+						aux = player.entios[i];
+					}
+				}
+			}
+		}
+		//abajo
+		else if (k == enti::InputKey::NUM4)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+				{
+					int proximidad = currentio->x - player.entios[i]->x;
+					int proximidadAux = -currentio->x - aux->x;
+					if (aux == nullptr || (proximidad < proximidadAux))
+					{
+
+						aux = player.entios[i];
+					}
 				}
 			}
 		}
 	}
-	//izquierda
-	else if (k == enti::InputKey::NUM2)
+	
+	//Espada
+	else if (arma == enti::InputKey::NUM1)
 	{
-		for (int i = 0; i < 6; i++)
+		//derecha
+		if (k == enti::InputKey::NUM1)
 		{
-			if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x < currentio->x))
+			for (int i = 0; i < 6; i++)
 			{
-				int proximidad = currentio->x-player.entios[i]->x ;
-				int proximidadAux = -currentio->x-aux->x;
-				if (aux == nullptr || (proximidad < proximidadAux))
+				if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
 				{
-					aux = player.entios[i];
+					int proximidad = player.entios[i]->x - currentio->x;
+					int proximidadAux = aux->x - currentio->x;
+					if (aux == nullptr || (proximidad < proximidadAux))
+					{
+
+						aux = player.entios[i];
+					}
 				}
 			}
 		}
-	}
-	//arriba
-	else if(k == enti::InputKey::NUM3)
-	{
-		for (int i = 0; i < 6; i++)
+		//izquierda
+		else if (k == enti::InputKey::NUM2)
 		{
-			if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+			for (int i = 0; i < 6; i++)
 			{
-				int proximidad = player.entios[i]->x - currentio->x;
-				int proximidadAux = aux->x - currentio->x;
-				if (aux == nullptr || (proximidad < proximidadAux))
+				if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x < currentio->x))
 				{
-
-					aux = player.entios[i];
+					int proximidad = currentio->x - player.entios[i]->x;
+					int proximidadAux = -currentio->x - aux->x;
+					if (aux == nullptr || (proximidad < proximidadAux))
+					{
+						aux = player.entios[i];
+					}
 				}
 			}
 		}
-	}
-	//abajo
-	else if(k == enti::InputKey::NUM4)
-	{
+		//arriba
+		else if (k == enti::InputKey::NUM3)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+				{
+					int proximidad = player.entios[i]->x - currentio->x;
+					int proximidadAux = aux->x - currentio->x;
+					if (aux == nullptr || (proximidad < proximidadAux))
+					{
 
+						aux = player.entios[i];
+					}
+				}
+			}
+		}
+		//abajo
+		else if (k == enti::InputKey::NUM4)
+		{
+			for (int i = 0; i < 6; i++)
+			{
+				if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+				{
+					int proximidad = currentio->x - player.entios[i]->x;
+					int proximidadAux = -currentio->x - aux->x;
+					if (aux == nullptr || (proximidad < proximidadAux))
+					{
+
+						aux = player.entios[i];
+					}
+				}
+			}
+		}
 	}
 
 	//restarle al aux->life deletear en caso de que sea aux-<life<0;
+
 }

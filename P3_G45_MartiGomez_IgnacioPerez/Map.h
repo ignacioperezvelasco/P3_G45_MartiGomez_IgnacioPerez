@@ -4,6 +4,7 @@
 #include <fstream>
 #include <map>
 #include "Renderer.hh"
+#include <conio.h>
 
 class Map
 {
@@ -23,6 +24,7 @@ public:
 	char **md;
 
 	void printmapa();
+	void help();
 	void leerfichero(std::string URL);
 	void cambiarpunto(int x, int y, char nuevoelemento);
 
