@@ -19,6 +19,7 @@ void main()
 
 	//PRINTAMOS MAPA Y AYUDA
 	a.help();
+	system("pause > nul");
 	
 	system("cls");
 	a.printmapa();
@@ -29,6 +30,8 @@ void main()
 	player1.info();
 	do
 	{
+		a.printmapa();
+		
 		k = enti::getInputKey();
 		//player1 starts
 		if (pl1) {
@@ -49,20 +52,19 @@ void main()
 				player2.numacciones = 10;
 			}
 		}
+		if (pl1 == false)
+		{
+			player2.info();
+		}
+		else
+		{
+			player1.info();
+		}
+		enti::cout << enti::cend;
 
 		if (k != enti::InputKey::NONE) {
 			system("cls");
-			a.printmapa();
-
-			if (pl1 == false)
-			{
-				player2.info();
-			}
-			else
-			{
-				player1.info();
-			}
 		}
-	} while (true);
 
+	} while (true);
 }

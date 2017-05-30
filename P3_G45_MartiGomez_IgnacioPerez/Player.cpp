@@ -84,12 +84,13 @@ void Player::rehacerAccion()
 
 void Player::info()
 {
+	enti::cout << enti::endl;
 	enti::cout << enti::Color::LIGHTGREEN << "Remaining movements: ";
 	enti::cout << enti::Color::WHITE << numacciones << enti::endl;
 
 	enti::cout << enti::Color::LIGHTGREEN << "Now moves character ";
 	enti::cout << enti::Color::WHITE << currentio->entioID << enti::endl;
-	enti::cout << enti::cend;
+	//enti::cout << enti::cend;
 }
 
 void Player::update_player(enti::InputKey key, Player &player)
@@ -229,6 +230,7 @@ void Player::ataque(Player &player)
 		arma=enti::getInputKey();
 		enti::cout << enti::cend;
 	} while (arma !=enti::InputKey::NUM1 || arma != enti::InputKey::NUM2);
+	//enti::cout << enti::cend;
 
 	//pedir otro input para saber direccion
 	do {
@@ -238,6 +240,7 @@ void Player::ataque(Player &player)
 	enti::cout << enti::Color::LIGHTGREEN << "3 - DOWN " << enti::endl;
 	enti::cout << enti::Color::LIGHTGREEN << "4 - RIGHT" << enti::endl;
 	k = enti::getInputKey();
+	//enti::cout << enti::cend;
 	} while (k != enti::InputKey::NUM1 || k != enti::InputKey::NUM2 || k != enti::InputKey::NUM3 || k != enti::InputKey::NUM4);
 	
 
@@ -384,6 +387,7 @@ void Player::ataque(Player &player)
 			}
 		}
 	}
+	//enti::cout << enti::cend;
 
 	//restarle al aux->life deletear en caso de que sea aux-<life<0;
 

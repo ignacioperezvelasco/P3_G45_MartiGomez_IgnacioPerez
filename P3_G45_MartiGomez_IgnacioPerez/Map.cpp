@@ -81,7 +81,7 @@ void Map::printmapa()
 		}
 		enti::cout << enti::endl;
 	}
-	enti::cout << enti::cend;
+	//enti::cout << enti::cend;
 }
 
 void Map::help()
@@ -103,6 +103,7 @@ void Map::help()
 	enti::cout << enti::endl;
 
 	enti::cout << enti::Color::BLUE << "Press any key to begin the game!" << enti::endl;
+	enti::cout << enti::cend;
 }
 
 
