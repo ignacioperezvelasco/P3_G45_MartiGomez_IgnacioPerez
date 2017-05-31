@@ -3,7 +3,7 @@
 
 
 Player::Player(Map &mapa, char a, char b, char c, char d, char e, char f) :
-	numacciones{ 10 },
+	numacciones{ 100 },
 	currmap{ mapa },
 	wantToPickWeapon {false},
 	pickedWeapon{ false },
@@ -45,15 +45,21 @@ void Player::gastaraccion()
 
 void Player::entioMenosFatigado()
 {
-	int aux = currentio->fatiga;
+
+	int aux = 1000;//malapraxis
 	int count=0;
 	Entio* aux2=entios[0];
 
 	for (int i = 0; i < 6; i++)
 	{
-		if (aux > entios[i]->fatiga) {
-			aux = entios[i]->fatiga;
-			aux2 = entios[i];
+		if(entios[i]!=nullptr){
+			if (aux > entios[i]->fatiga) {
+				if (entios[i] != nullptr)
+				{
+					aux = entios[i]->fatiga;
+					aux2 = entios[i];
+				}
+			}			
 			count++;
 		}
 	}
@@ -93,7 +99,7 @@ void Player::rehacerAccion()
 
 void Player::info(Player &player)
 {
-	
+	int i;
 
 	enti::cout << enti::endl;
 	enti::cout << enti::Color::LIGHTGREEN << "Remaining movements: ";
@@ -101,7 +107,7 @@ void Player::info(Player &player)
 
 	enti::cout << enti::Color::LIGHTGREEN << "Now moves character ";
 	enti::cout << enti::Color::WHITE << currentio->entioID << enti::endl;
-	
+
 
 	if (wantToPickWeapon == true)
 	{
@@ -110,10 +116,10 @@ void Player::info(Player &player)
 		enti::cout << enti::Color::LIGHTGREEN << "1 - SWORD " << enti::endl;
 		enti::cout << enti::Color::LIGHTGREEN << "2 - BOW" << enti::endl;
 		arma = enti::getInputKey();
-		if (arma == enti::InputKey::NUM1|| arma==enti::InputKey::NUM2) 
+		if (arma == enti::InputKey::NUM1 || arma == enti::InputKey::NUM2)
 		{
 			pickedWeapon = true;
-		}		
+		}
 	}
 	if (pickedWeapon == true)
 	{
@@ -130,25 +136,155 @@ void Player::info(Player &player)
 		{
 			up = true;
 		}
+		else if (direction == enti::InputKey::NUM2)
+		{
+			left = true;
+		}
+		else if (direction == enti::InputKey::NUM3)
+		{
+			down = true;
+		}
+		else if (direction == enti::InputKey::NUM4)
+		{
+			right = true;
+		}
 	}
+	//SWORD
 	if (up == true)
 	{
+		Entio* comprobar;
 		pickedWeapon = false;
-		for (int i = 0; i < 6; i++)
+		i = 0;
+		comprobar= player.entios[i];
+		
+		do
 		{
-			if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+			if (i == 5)
 			{
+				up = false;
+				comprobar = nullptr;
 				
-				if ((player.entios[i]->x==currentio->x) && (player.entios[i]->y==(currentio->y+1)))
+			}
+			else {
+				comprobar = player.entios[i];
+			
+				if ((player.entios[i]->x == currentio->x - 1) && (player.entios[i]->y == currentio->y))
 				{
+					player.entios[i]->life -= 10;
+					currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+					player.myEntios.erase(player.entios[i]->entioID);
+					player.entios[i] = nullptr;		
 					
-					currmap.md[currentio->x][currentio->y + 1]=player.entios[i]->beforeEntio;
-					player.entios[i] = nullptr;
+					comprobar = nullptr;
+					up = false;
 				}
 			}
-		up = false;
-	}
 
+			i++;
+		} while (comprobar != nullptr);
+		
+	}
+	if (left == true)
+	{
+		Entio* comprobar;
+		pickedWeapon = false;
+		i = 0;
+		comprobar = player.entios[i];
+
+		do
+		{
+			if (i == 5)
+			{
+				up = false;
+				comprobar = nullptr;
+
+			}
+			else {
+				comprobar = player.entios[i];
+
+				if ((player.entios[i]->x == currentio->x) && (player.entios[i]->y == currentio->y-1))
+				{
+					player.entios[i]->life -= 10;
+					currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+					player.myEntios.erase(player.entios[i]->entioID);
+					player.entios[i] = nullptr;
+					
+					comprobar = nullptr;
+					left = false;
+				}
+			}
+			i++;
+		} while (comprobar != nullptr);
+
+	}
+	if (down == true)
+	{
+		Entio* comprobar;
+		pickedWeapon = false;
+		i = 0;
+		comprobar = player.entios[i];
+
+		do
+		{
+			if (i == 5)
+			{
+				up = false;
+				comprobar = nullptr;
+
+			}
+			else {
+				comprobar = player.entios[i];
+
+				if ((player.entios[i]->x == currentio->x+1) && (player.entios[i]->y == currentio->y))
+				{
+					player.entios[i]->life -= 10;
+					currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+					player.myEntios.erase(player.entios[i]->entioID);
+					player.entios[i] = nullptr;
+					
+					comprobar = nullptr;
+					down = false;
+				}
+			}
+			i++;
+		} while (comprobar != nullptr);
+
+	}
+	if (right == true)
+	{
+		Entio* comprobar;
+		pickedWeapon = false;
+		i = 0;
+		comprobar = player.entios[i];
+
+		do
+		{
+			if (i == 5)
+			{
+				up = false;
+				comprobar = nullptr;
+
+			}
+			else {
+				comprobar = player.entios[i];
+
+				if ((player.entios[i]->x == currentio->x) && (player.entios[i]->y == currentio->y+1))
+				{
+					player.entios[i]->life -= 10;
+					currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+					player.myEntios.erase(player.entios[i]->entioID);
+					player.entios[i] = nullptr;
+					
+					comprobar = nullptr;
+					right = false;
+					
+				}
+			}
+			i++;
+		} while (comprobar != nullptr);
+
+	}
+	//BOW
 	enti::cout << enti::cend;
 }
 
@@ -158,7 +294,7 @@ void Player::update_player(enti::InputKey key, Player &player)
 	int previous_y = currentio->y;
 	char next=currentio->beforeEntio;
 	int count = 0;
-
+	
 	switch (key)
 	{
 	case enti::InputKey::W:
@@ -258,6 +394,7 @@ void Player::update_player(enti::InputKey key, Player &player)
 		break;
 	}
 	
+	
 
 	//UPDATEAMOS LA POSICION DEL JUGADOR
 	if (count !=0){
@@ -272,6 +409,20 @@ void Player::lastMove()
 
 void Player::newMove()
 {
+}
+
+void Player::selectEntio()
+{
+	if (currentio == nullptr)
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			if (entios[i] != nullptr)
+			{
+				currentio = entios[i];
+			}
+		}
+	}
 }
 
 void Player::ataque(Player &player)

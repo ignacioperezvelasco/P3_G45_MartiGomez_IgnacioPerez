@@ -35,21 +35,25 @@ void main()
 		k = enti::getInputKey();
 		//player1 starts
 		if (pl1) {
+			
 			player1.update_player(k,player2);
 			if (player1.numacciones <= 0) 
 			{
+				player2.entioMenosFatigado();
 				pl1 = false;
-				player1.numacciones = 10;
+				player1.numacciones = 11;
 				
 			}
 		}
 		else 
 		{
+			
 			player2.update_player(k,player1);
 			if (player2.numacciones <= 0)
 			{
+				player1.entioMenosFatigado();
 				pl1 = true;
-				player2.numacciones = 10;
+				player2.numacciones = 11;
 			}
 		}
 		if (pl1 == false)

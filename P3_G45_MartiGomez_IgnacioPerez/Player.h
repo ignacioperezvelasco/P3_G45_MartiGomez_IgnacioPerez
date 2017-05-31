@@ -41,6 +41,7 @@ public:
 	void lastMove();								//DESHACER NOVIMIENTO
 	void newMove();									//REHACER MOVIMIENTO
 	void ataque(Player &player);
+	void selectEntio();
 
 	Player(Map &mapa,char a, char b, char c, char d, char e,char f);
 	Player();
