@@ -13,12 +13,21 @@ public:
 	std::map<char,Entio> myEntios;
 	bool wantToPickWeapon;
 	bool pickedWeapon;
-	//ataque
-	bool up;
-	bool left;
-	bool down;
-	bool right;
+	//ataque SWORD
+	bool up_S;
+	bool left_S;
+	bool down_S;
+	bool right_S;
 
+	//ataque BOW
+	bool up_B;
+	bool left_B;
+	bool down_B;
+	bool right_B;
+
+	//arma
+	bool sword;
+	bool bow;
 
 	enti::InputKey arma;
 	enti::InputKey direction;

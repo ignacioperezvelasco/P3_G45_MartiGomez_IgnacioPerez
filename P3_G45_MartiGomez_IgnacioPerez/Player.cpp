@@ -9,10 +9,10 @@ Player::Player(Map &mapa, char a, char b, char c, char d, char e, char f) :
 	pickedWeapon{ false },
 	arma{enti::InputKey::NONE},
 	direction{ enti::InputKey::NONE },
-	up{false},
-	left{ false },
-	down{ false },
-	right{ false }
+	up_S{false},
+	left_S{ false },
+	down_S{ false },
+	right_S{ false }
 
 {
 	myEntios[a]=Entio(a,currmap);
@@ -100,6 +100,7 @@ void Player::rehacerAccion()
 void Player::info(Player &player)
 {
 	int i;
+	int damage;
 
 	enti::cout << enti::endl;
 	enti::cout << enti::Color::LIGHTGREEN << "Remaining movements: ";
@@ -116,12 +117,18 @@ void Player::info(Player &player)
 		enti::cout << enti::Color::LIGHTGREEN << "1 - SWORD " << enti::endl;
 		enti::cout << enti::Color::LIGHTGREEN << "2 - BOW" << enti::endl;
 		arma = enti::getInputKey();
-		if (arma == enti::InputKey::NUM1 || arma == enti::InputKey::NUM2)
+		if (arma == enti::InputKey::NUM1)
 		{
 			pickedWeapon = true;
+			sword = true;
+		}
+		else if (arma == enti::InputKey::NUM2)
+		{
+			pickedWeapon = true;
+			bow = true;
 		}
 	}
-	if (pickedWeapon == true)
+	if (pickedWeapon == true && sword == true)
 	{
 		wantToPickWeapon = false;
 		enti::cout << enti::endl;
@@ -134,23 +141,51 @@ void Player::info(Player &player)
 
 		if (direction == enti::InputKey::NUM1)
 		{
-			up = true;
+			up_S = true;
 		}
 		else if (direction == enti::InputKey::NUM2)
 		{
-			left = true;
+			left_S = true;
 		}
 		else if (direction == enti::InputKey::NUM3)
 		{
-			down = true;
+			down_S = true;
 		}
 		else if (direction == enti::InputKey::NUM4)
 		{
-			right = true;
+			right_S = true;
+		}
+	}
+	else if (pickedWeapon == true && bow == true)
+	{
+		wantToPickWeapon = false;
+		enti::cout << enti::endl;
+		enti::cout << enti::Color::WHITE << "Enter the direction to attack:  " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "1 - UP " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "2 - LEFT" << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "3 - DOWN " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "4 - RIGHT" << enti::endl;
+		direction = enti::getInputKey();
+
+		if (direction == enti::InputKey::NUM1)
+		{
+			up_B = true;
+		}
+		else if (direction == enti::InputKey::NUM2)
+		{
+			left_B = true;
+		}
+		else if (direction == enti::InputKey::NUM3)
+		{
+			down_B = true;
+		}
+		else if (direction == enti::InputKey::NUM4)
+		{
+			right_B = true;
 		}
 	}
 	//SWORD
-	if (up == true)
+	if (up_S == true)
 	{
 		Entio* comprobar;
 		pickedWeapon = false;
@@ -161,7 +196,7 @@ void Player::info(Player &player)
 		{
 			if (i == 5)
 			{
-				up = false;
+				up_S = false;
 				comprobar = nullptr;
 				
 			}
@@ -176,7 +211,7 @@ void Player::info(Player &player)
 					player.entios[i] = nullptr;		
 					
 					comprobar = nullptr;
-					up = false;
+					up_S = false;
 				}
 			}
 
@@ -184,7 +219,7 @@ void Player::info(Player &player)
 		} while (comprobar != nullptr);
 		
 	}
-	if (left == true)
+	else if (left_S == true)
 	{
 		Entio* comprobar;
 		pickedWeapon = false;
@@ -195,7 +230,7 @@ void Player::info(Player &player)
 		{
 			if (i == 5)
 			{
-				up = false;
+				left_S = false;
 				comprobar = nullptr;
 
 			}
@@ -210,14 +245,14 @@ void Player::info(Player &player)
 					player.entios[i] = nullptr;
 					
 					comprobar = nullptr;
-					left = false;
+					left_S = false;
 				}
 			}
 			i++;
 		} while (comprobar != nullptr);
 
 	}
-	if (down == true)
+	else if (down_S == true)
 	{
 		Entio* comprobar;
 		pickedWeapon = false;
@@ -228,7 +263,7 @@ void Player::info(Player &player)
 		{
 			if (i == 5)
 			{
-				up = false;
+				down_S = false;
 				comprobar = nullptr;
 
 			}
@@ -243,14 +278,14 @@ void Player::info(Player &player)
 					player.entios[i] = nullptr;
 					
 					comprobar = nullptr;
-					down = false;
+					down_S = false;
 				}
 			}
 			i++;
 		} while (comprobar != nullptr);
 
 	}
-	if (right == true)
+	else if (right_S == true)
 	{
 		Entio* comprobar;
 		pickedWeapon = false;
@@ -261,7 +296,7 @@ void Player::info(Player &player)
 		{
 			if (i == 5)
 			{
-				up = false;
+				right_S = false;
 				comprobar = nullptr;
 
 			}
@@ -276,7 +311,7 @@ void Player::info(Player &player)
 					player.entios[i] = nullptr;
 					
 					comprobar = nullptr;
-					right = false;
+					right_S = false;
 					
 				}
 			}
@@ -284,7 +319,167 @@ void Player::info(Player &player)
 		} while (comprobar != nullptr);
 
 	}
+
 	//BOW
+	if (up_B == true)
+	{
+		Entio* comprobar;
+		pickedWeapon = false;
+		i = 0;
+		comprobar = player.entios[i];
+
+		do
+		{
+			if (i == 5)
+			{
+				up_B = false;
+				comprobar = nullptr;
+
+			}
+			else {
+				comprobar = player.entios[i];
+
+				if (((player.entios[i]->x >= currentio->x - 10)&&(player.entios[i]->x <= currentio->x - 1)) && (player.entios[i]->y == currentio->y))
+				{
+					damage = currentio->x - player.entios[i]->x;
+					player.entios[i]->life -= damage;
+					
+					if (player.entios[i]->life <= 0) {
+					currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+					player.myEntios.erase(player.entios[i]->entioID);
+					player.entios[i] = nullptr;
+					}
+					comprobar = nullptr;
+					up_B = false;
+				}
+			}
+
+			i++;
+		} while (comprobar != nullptr);
+
+	}
+	else if (left_B == true)
+	{
+		Entio* comprobar;
+		pickedWeapon = false;
+		i = 0;
+		comprobar = player.entios[i];
+
+		do
+		{
+			if (i == 5)
+			{
+				left_B = false;
+				comprobar = nullptr;
+
+			}
+			else {
+				comprobar = player.entios[i];
+
+				if (((player.entios[i]->y >= currentio->y - 10) && (player.entios[i]->y <= currentio->y - 1)) && (player.entios[i]->x == currentio->x))
+				{
+					damage = currentio->y - player.entios[i]->y;
+					player.entios[i]->life -= damage;
+
+					currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+					player.myEntios.erase(player.entios[i]->entioID);
+					player.entios[i] = nullptr;
+
+					if (player.entios[i]->life <= 0) {
+						currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+						player.myEntios.erase(player.entios[i]->entioID);
+						player.entios[i] = nullptr;
+					}
+					comprobar = nullptr;
+					left_B = false;
+				}
+			}
+			i++;
+		} while (comprobar != nullptr);
+
+	}
+	else if (down_B == true)
+	{
+		Entio* comprobar;
+		pickedWeapon = false;
+		i = 0;
+		comprobar = player.entios[i];
+
+		do
+		{
+			if (i == 5)
+			{
+				down_B = false;
+				comprobar = nullptr;
+
+			}
+			else {
+				comprobar = player.entios[i];
+
+				if (((player.entios[i]->x <= currentio->x + 10) && (player.entios[i]->x >= currentio->x + 1)) && (player.entios[i]->y == currentio->y))
+				{
+					damage = currentio->y - player.entios[i]->y;
+					player.entios[i]->life -= damage;
+
+					currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+					player.myEntios.erase(player.entios[i]->entioID);
+					player.entios[i] = nullptr;
+
+					if (player.entios[i]->life <= 0) {
+						currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+						player.myEntios.erase(player.entios[i]->entioID);
+						player.entios[i] = nullptr;
+					}
+					comprobar = nullptr;
+					down_B = false;
+				}
+			}
+			i++;
+		} while (comprobar != nullptr);
+
+	}
+	else if (right_B == true)
+	{
+		Entio* comprobar;
+		pickedWeapon = false;
+		i = 0;
+		comprobar = player.entios[i];
+
+		do
+		{
+			if (i == 5)
+			{
+				right_B = false;
+				comprobar = nullptr;
+
+			}
+			else {
+				comprobar = player.entios[i];
+
+				if (((player.entios[i]->y <= currentio->y + 10) && (player.entios[i]->y >= currentio->y + 1)) && (player.entios[i]->x == currentio->x))
+				{
+					damage = currentio->y - player.entios[i]->y;
+					player.entios[i]->life -= damage;
+
+					currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+					player.myEntios.erase(player.entios[i]->entioID);
+					player.entios[i] = nullptr;
+
+					if (player.entios[i]->life <= 0) {
+						currmap.md[player.entios[i]->x][player.entios[i]->y] = player.entios[i]->beforeEntio;
+						player.myEntios.erase(player.entios[i]->entioID);
+						player.entios[i] = nullptr;
+					}
+					comprobar = nullptr;
+					down_B = false;
+				}
+			}
+			i++;
+		} while (comprobar != nullptr);
+
+	}
+
+
 	enti::cout << enti::cend;
 }
 
