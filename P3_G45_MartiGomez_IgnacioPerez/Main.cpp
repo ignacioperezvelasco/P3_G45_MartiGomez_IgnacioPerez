@@ -27,7 +27,7 @@ void main()
 	//EMPIEZA EL JUGADOR 1
 	
 	bool pl1 = true;
-	player1.info();
+	player1.info(player2);
 	do
 	{
 		a.printmapa();
@@ -54,13 +54,13 @@ void main()
 		}
 		if (pl1 == false)
 		{
-			player2.info();
+			player2.info(player1);
 		}
 		else
 		{
-			player1.info();
+			player1.info(player2);
 		}
-		enti::cout << enti::cend;
+		//enti::cout << enti::cend;
 
 		if (k != enti::InputKey::NONE) {
 			system("cls");

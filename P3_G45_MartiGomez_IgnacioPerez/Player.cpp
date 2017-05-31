@@ -2,9 +2,18 @@
 #include "Input.inl.hh"
 
 
-Player::Player(Map &mapa, char a, char b, char c, char d, char e, char f):
+Player::Player(Map &mapa, char a, char b, char c, char d, char e, char f) :
 	numacciones{ 10 },
-	currmap{ mapa }
+	currmap{ mapa },
+	wantToPickWeapon {false},
+	pickedWeapon{ false },
+	arma{enti::InputKey::NONE},
+	direction{ enti::InputKey::NONE },
+	up{false},
+	left{ false },
+	down{ false },
+	right{ false }
+
 {
 	myEntios[a]=Entio(a,currmap);
 	entios[0] = &myEntios[a];
@@ -82,15 +91,65 @@ void Player::rehacerAccion()
 {
 }
 
-void Player::info()
+void Player::info(Player &player)
 {
+	
+
 	enti::cout << enti::endl;
 	enti::cout << enti::Color::LIGHTGREEN << "Remaining movements: ";
 	enti::cout << enti::Color::WHITE << numacciones << enti::endl;
 
 	enti::cout << enti::Color::LIGHTGREEN << "Now moves character ";
 	enti::cout << enti::Color::WHITE << currentio->entioID << enti::endl;
-	//enti::cout << enti::cend;
+	
+
+	if (wantToPickWeapon == true)
+	{
+		enti::cout << enti::endl;
+		enti::cout << enti::Color::WHITE << "Enter the weapon you want to choose:  " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "1 - SWORD " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "2 - BOW" << enti::endl;
+		arma = enti::getInputKey();
+		if (arma == enti::InputKey::NUM1|| arma==enti::InputKey::NUM2) 
+		{
+			pickedWeapon = true;
+		}		
+	}
+	if (pickedWeapon == true)
+	{
+		wantToPickWeapon = false;
+		enti::cout << enti::endl;
+		enti::cout << enti::Color::WHITE << "Enter the direction to attack:  " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "1 - UP " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "2 - LEFT" << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "3 - DOWN " << enti::endl;
+		enti::cout << enti::Color::LIGHTGREEN << "4 - RIGHT" << enti::endl;
+		direction = enti::getInputKey();
+
+		if (direction == enti::InputKey::NUM1)
+		{
+			up = true;
+		}
+	}
+	if (up == true)
+	{
+		pickedWeapon = false;
+		for (int i = 0; i < 6; i++)
+		{
+			if ((player.entios[i]->y == currentio->y) && (player.entios[i]->x > currentio->x))
+			{
+				
+				if ((player.entios[i]->x==currentio->x) && (player.entios[i]->y==(currentio->y+1)))
+				{
+					
+					currmap.md[currentio->x][currentio->y + 1]=player.entios[i]->beforeEntio;
+					player.entios[i] = nullptr;
+				}
+			}
+		up = false;
+	}
+
+	enti::cout << enti::cend;
 }
 
 void Player::update_player(enti::InputKey key, Player &player)
@@ -191,7 +250,7 @@ void Player::update_player(enti::InputKey key, Player &player)
 		deshacerAccion();
 		break;
 	case enti::InputKey::SPACEBAR:
-		ataque(player);
+		wantToPickWeapon = true;
 
 		break;
 	case enti::InputKey::ENTER:
@@ -230,7 +289,6 @@ void Player::ataque(Player &player)
 		arma=enti::getInputKey();
 		enti::cout << enti::cend;
 	} while (arma !=enti::InputKey::NUM1 || arma != enti::InputKey::NUM2);
-	//enti::cout << enti::cend;
 
 	//pedir otro input para saber direccion
 	do {

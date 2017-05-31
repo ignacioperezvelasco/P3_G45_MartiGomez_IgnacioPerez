@@ -11,6 +11,17 @@ public:
 	Map currmap;
 	int numacciones;
 	std::map<char,Entio> myEntios;
+	bool wantToPickWeapon;
+	bool pickedWeapon;
+	//ataque
+	bool up;
+	bool left;
+	bool down;
+	bool right;
+
+
+	enti::InputKey arma;
+	enti::InputKey direction;
 
 	//GUARDAMOS ULTIMOS MOVIMIENTOS
 	int l_X;
@@ -23,7 +34,7 @@ public:
 	void entioMenosFatigado();
 	void deshacerAccion();
 	void rehacerAccion();
-	void info();
+	void info(Player &player);
 	//void finalizarTurno();
 
 	void update_player(enti::InputKey key, Player &player);			//MOVIMIENTO JUGADOR
