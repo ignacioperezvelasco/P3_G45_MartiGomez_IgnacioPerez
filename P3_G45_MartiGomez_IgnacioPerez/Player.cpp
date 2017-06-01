@@ -109,8 +109,9 @@ void Player::info(Player &player)
 
 	enti::cout << enti::Color::LIGHTGREEN << "Now moves character ";
 	enti::cout << enti::Color::WHITE << currentio->entioID << enti::endl;
-
-
+	if (numacciones <= 0) {
+		enti::cout << enti::Color::WHITE << "Press ENTER" << enti::endl;
+	}
 	if (wantToPickWeapon == true)
 	{
 		enti::cout << enti::endl;
