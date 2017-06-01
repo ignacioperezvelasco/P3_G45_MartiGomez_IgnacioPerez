@@ -35,6 +35,9 @@ public:
 	//GUARDAMOS ULTIMOS MOVIMIENTOS
 	int l_X;
 	int l_Y;
+
+	//DAMAGE
+	int damage;
 	
 	Entio* currentio;
 	Entio* entios[6];
